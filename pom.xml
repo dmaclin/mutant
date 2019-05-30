@@ -40,6 +40,11 @@
 			<artifactId>firebase-admin</artifactId>
 			<version>6.8.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>appengine-api-1.0-sdk</artifactId>
+			<version>1.9.64</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -107,6 +112,11 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.google.appengine</groupId>
+				<artifactId>appengine-maven-plugin</artifactId>
+				<version>1.9.74</version>
 			</plugin>
 		</plugins>
 		<finalName>MutantRest</finalName>
