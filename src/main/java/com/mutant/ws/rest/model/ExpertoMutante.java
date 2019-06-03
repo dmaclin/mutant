@@ -5,7 +5,7 @@ package com.mutant.ws.rest.model;
 
 public class ExpertoMutante {
 
-	private static final int TAMAÑO_MUESTRA_ADN = 4;
+	private static final int TAMANIO_MUESTRA_ADN = 4;
 	
 	public boolean isMutant(String[] dna) throws ServicioException {
 		int cantidadSecuencias = 0;
@@ -32,7 +32,7 @@ public class ExpertoMutante {
         char ultimaLetra = 'Z';
 
 		for (int i = 0; i < dna.length; i++) {
-			if (i > nroInicioColumna + TAMAÑO_MUESTRA_ADN - 1) {
+			if (i > nroInicioColumna + TAMANIO_MUESTRA_ADN - 1) {
 				j++;
 				if (j > dna.length - 1) {
 					j = 0;
@@ -44,7 +44,7 @@ public class ExpertoMutante {
 			}
         	if(dna[j].charAt(i) == ultimaLetra) {
         		cantidadCoincidenciasEnSecuencia++;
-        		if(cantidadCoincidenciasEnSecuencia == TAMAÑO_MUESTRA_ADN - 1) {
+        		if(cantidadCoincidenciasEnSecuencia == TAMANIO_MUESTRA_ADN - 1) {
         			cantidadSecuenciasMutantes++;
         		}
         	}else {
@@ -72,7 +72,7 @@ public class ExpertoMutante {
         char ultimaLetra = 'Z';
 
 		for (int i = 0; i < dna.length; i++) {
-			if (i > nroInicioColumna + TAMAÑO_MUESTRA_ADN - 1) {
+			if (i > nroInicioColumna + TAMANIO_MUESTRA_ADN - 1) {
 				j++;
 				if (j > dna.length - 1) {
 					j = 0;
@@ -84,7 +84,7 @@ public class ExpertoMutante {
 			}
         	if(dna[i].charAt(j) == ultimaLetra) {
         		cantidadCoincidenciasEnSecuencia++;
-        		if(cantidadCoincidenciasEnSecuencia == TAMAÑO_MUESTRA_ADN - 1) {
+        		if(cantidadCoincidenciasEnSecuencia == TAMANIO_MUESTRA_ADN - 1) {
         			cantidadSecuenciasMutantes++;
         		}
         	}else {
@@ -121,7 +121,7 @@ public class ExpertoMutante {
 				continue;
 			}
 			
-        	if(j > nroInicioDiagonalColumn + TAMAÑO_MUESTRA_ADN - 1) {
+        	if(j > nroInicioDiagonalColumn + TAMANIO_MUESTRA_ADN - 1) {
 				j = ++nroInicioDiagonalColumn;
 				i = nroInicioDiagonalFila - 1;
 				cantidadCoincidenciasEnSecuencia = 0;
@@ -130,7 +130,7 @@ public class ExpertoMutante {
         	
         	if(dna[i].charAt(j) == ultimaLetra) {
         		cantidadCoincidenciasEnSecuencia++;
-        		if(cantidadCoincidenciasEnSecuencia == TAMAÑO_MUESTRA_ADN - 1) {
+        		if(cantidadCoincidenciasEnSecuencia == TAMANIO_MUESTRA_ADN - 1) {
         			cantidadSecuenciasMutantes++;
         		}
         	}else {

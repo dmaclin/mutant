@@ -3,7 +3,7 @@ package com.mutant.ws.rest.model;
 public class Estadistica {
 	private int count_mutant_dna;
 	private int count_human_dna;
-	private String ratio;
+	private double ratio;
 	
 	public int getCount_mutant_dna() {
 		return count_mutant_dna;
@@ -17,11 +17,11 @@ public class Estadistica {
 	public void setCount_human_dna(int count_human_dna) {
 		this.count_human_dna = count_human_dna;
 	}
-	public String getRatio() {
+	public double getRatio() {
 		return ratio;
 	}
-	public void setRatio(float ratio) {
-		this.ratio = String.valueOf(ratio);
+	public void setRatio(double ratio) {
+		this.ratio = ratio;
 	}
 	public void sumarMutante() {
 		this.count_mutant_dna++;
@@ -31,7 +31,7 @@ public class Estadistica {
 		
 	}
 	public void calcularProporcion() {
-		setRatio(this.count_human_dna/this.count_mutant_dna);
-		
+		setRatio(Math.round(((this.count_mutant_dna*1.0)/this.count_human_dna) * 100.0)/100.0);
 	}
+
 }

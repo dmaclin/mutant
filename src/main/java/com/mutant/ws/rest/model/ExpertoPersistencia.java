@@ -14,15 +14,15 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class ExpertoPersistencia {
 	private static ExpertoPersistencia instancia;
-	private static final String BASE_DE_DATOS = "https://mutant-65bd8.firebaseio.com/";
-	private static final String CLAVE = "mutant-65bd8-firebase-adminsdk-tsqpb-f96eddbb00.json";
+	private static final String BASE_DE_DATOS = "https://mutant-242218.firebaseio.com/";
+	private static final String CLAVE = "./mutant-242218-firebase-adminsdk-ycbft-7a0a88236f.json";
 	final Semaphore semaphore = new Semaphore(0);
 	private FileInputStream serviceAccount;
 	private FirebaseOptions options;
 	
 	private ExpertoPersistencia() {
 		try {
-			serviceAccount = new FileInputStream(this.getClass().getResource(CLAVE).getFile());
+			serviceAccount = new FileInputStream(this.getClass().getClassLoader().getResource(CLAVE).getFile());
 			options = new FirebaseOptions.Builder()
 			    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
 			    .setDatabaseUrl(BASE_DE_DATOS)

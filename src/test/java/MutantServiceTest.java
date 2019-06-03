@@ -5,10 +5,11 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.ws.rs.core.Response;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import com.mutant.ws.rest.model.ExpertoPersistencia;
 import com.mutant.ws.rest.model.SecuenciaADN;
@@ -81,7 +82,7 @@ public class MutantServiceTest {
 		try {
 			MutantService nuevoServicio = new MutantService();
 			SecuenciaADN dna = new SecuenciaADN();
-			dna.setDna(GeneradorADN.ListaSecuenciaAleatoria(100));
+			dna.setDna(ListaSecuenciaAleatoria(100));
 			Response respuesta = nuevoServicio.isMutant(dna);
 
 			assertEquals(200, respuesta.getStatus());
@@ -121,4 +122,24 @@ public class MutantServiceTest {
 			}
 			assertEquals(true, true);
 	}
+	
+private List<String> ListaSecuenciaAleatoria(int Dimension) {
+        
+        List<String> cadena= new ArrayList<String>();     
+
+        Random aleatorio = new Random();
+
+        String letrasADN = "ATCG";
+        for (int j = 0; j < Dimension; j++) {
+            StringBuilder buffer = new StringBuilder();
+
+            for (int i = 0; i < Dimension; i++) {
+                buffer.append(letrasADN.charAt(aleatorio.nextInt(letrasADN.length())));
+            }
+            
+            cadena.add(buffer.toString());
+        }
+        
+        return cadena;
+    }
 }
