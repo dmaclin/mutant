@@ -159,7 +159,7 @@
 			<plugin>
 				<groupId>com.google.appengine</groupId>
 				<artifactId>appengine-maven-plugin</artifactId>
-				<version>1.9.74</version>
+				<version>1.9.38</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
