@@ -117,7 +117,7 @@
 			<plugin>
 				<groupId>com.google.appengine</groupId>
 				<artifactId>appengine-maven-plugin</artifactId>
-				<version>1.9.75</version>
+				<version>1.9.74</version>
 				<configuration>
 					<appId>mutant-242218</appId> <!-- Override appengine-web.xml <project> -->
 					<version>1</version>
