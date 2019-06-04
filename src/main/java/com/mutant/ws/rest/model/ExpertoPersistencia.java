@@ -1,6 +1,6 @@
 package com.mutant.ws.rest.model;
 
-import java.io.FileInputStream;
+//import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
@@ -14,17 +14,17 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class ExpertoPersistencia {
 	private static ExpertoPersistencia instancia;
-	private static final String BASE_DE_DATOS = "https://mutant-242218.firebaseio.com/";
-	private static final String CLAVE = "./mutant-242218-firebase-adminsdk-ycbft-7a0a88236f.json";
+	private static final String BASE_DE_DATOS = "https://mutant-7448.firebaseio.com/";
+	//private static final String CLAVE = "./mutant-242218-firebase-adminsdk-ycbft-7a0a88236f.json";
 	final Semaphore semaphore = new Semaphore(0);
-	private FileInputStream serviceAccount;
+	//private FileInputStream serviceAccount;
 	private FirebaseOptions options;
 	
 	private ExpertoPersistencia() {
 		try {
-			serviceAccount = new FileInputStream(this.getClass().getClassLoader().getResource(CLAVE).getFile());
+			/*serviceAccount = new FileInputStream(this.getClass().getClassLoader().getResource(CLAVE).getFile());*/
 			options = new FirebaseOptions.Builder()
-			    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+			    .setCredentials(GoogleCredentials.getApplicationDefault())
 			    .setDatabaseUrl(BASE_DE_DATOS)
 			    .build();
 			FirebaseApp.initializeApp(options);
