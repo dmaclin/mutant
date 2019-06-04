@@ -71,13 +71,13 @@ public class MutantService {
 			}else {
 				respuesta.setResultado(estadistica);
 				respuesta.setHuboExcepcion(true);
-				respuesta.setExcepcion("No se ha registrado estadísticas");
+				respuesta.setExcepcion("No se ha registrado estadisticas");
 				return Response.status(403).entity(respuesta).build();
 			}
 		} catch (ServicioException e) {
 			respuesta.setResultado(estadistica);
 			respuesta.setHuboExcepcion(true);
-			respuesta.setExcepcion("Error al intentar obtener estadísticas");
+			respuesta.setExcepcion("Error al intentar obtener estadï¿½sticas");
 			return Response.status(503).entity(respuesta).build();
 		}
 	}
