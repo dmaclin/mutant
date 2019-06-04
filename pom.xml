@@ -44,11 +44,10 @@
 			<artifactId>firebase-admin</artifactId>
 			<version>6.8.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.google.appengine/appengine-api-1.0-sdk -->
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-1.0-sdk</artifactId>
-			<version>1.5.4</version>
+			<version>1.9.74</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-nop -->
@@ -57,6 +56,12 @@
 			<artifactId>slf4j-nop</artifactId>
 			<version>1.7.26</version>
 			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.appengine/appengine-agent-sdk -->
+		<dependency>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>appengine-agent-sdk</artifactId>
+			<version>1.9.38</version>
 		</dependency>
 
 	</dependencies>
