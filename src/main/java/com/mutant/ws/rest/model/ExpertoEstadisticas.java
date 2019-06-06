@@ -1,8 +1,10 @@
 package com.mutant.ws.rest.model;
 
 public final class ExpertoEstadisticas {
+	ExpertoPersistencia expertoPersistencia;
 	
 	public Estadistica obtenerEstadisticas() throws ServicioException {
-		return ExpertoPersistencia.getInstancia().obtenerEstadisticas();
+		expertoPersistencia = new ExpertoPersistencia();
+		return expertoPersistencia.obtenerEstadisticas();
 	}	
 }

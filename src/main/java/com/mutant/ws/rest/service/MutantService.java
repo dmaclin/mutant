@@ -16,13 +16,13 @@ import com.mutant.ws.rest.model.SecuenciaADN;
 import com.mutant.ws.rest.model.ServicioException;
 import com.mutant.ws.rest.model.Validador;
 
-@Path("/mutantService")
+@Path("services")
 public class MutantService {
 	private ExpertoMutante expertoMutante;
 	private ExpertoEstadisticas expertoEstadisticas;
 	
 	@POST
-	@Path("/mutant")
+	@Path("mutant")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
 	public Response isMutant(SecuenciaADN secuencia) {
@@ -54,7 +54,7 @@ public class MutantService {
 	}
 	
 	@GET
-	@Path("/stats")
+	@Path("stats")
 	@Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
 	public Response obtenerEstadisticas() {
@@ -77,7 +77,7 @@ public class MutantService {
 		} catch (ServicioException e) {
 			respuesta.setResultado(estadistica);
 			respuesta.setHuboExcepcion(true);
-			respuesta.setExcepcion("Error al intentar obtener estad�sticas");
+			respuesta.setExcepcion(e.getMessage());
 			return Response.status(503).entity(respuesta).build();
 		}
 	}

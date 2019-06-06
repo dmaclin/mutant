@@ -113,9 +113,10 @@ public class MutantServiceTest {
 
 	@Test
 	public void testConexionBase() {
+		ExpertoPersistencia expertoPersistencia = new ExpertoPersistencia();
 		String[] dna = { "ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG" };
 			try {
-				ExpertoPersistencia.getInstancia().guardarADN(dna, true);
+				expertoPersistencia.guardarADN(dna, true);
 			} catch (ServicioException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

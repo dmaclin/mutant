@@ -31,7 +31,7 @@ public class Estadistica {
 		
 	}
 	public void calcularProporcion() {
-		setRatio(Math.round(((this.count_mutant_dna*1.0)/this.count_human_dna) * 100.0)/100.0);
+		setRatio(Math.round(((this.count_mutant_dna*1.0)/(this.count_human_dna==0?1.0:this.count_human_dna)) * 100.0)/100.0);
 	}
 
 }

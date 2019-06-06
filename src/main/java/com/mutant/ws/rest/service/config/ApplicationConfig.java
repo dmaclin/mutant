@@ -8,7 +8,7 @@ import com.mutant.ws.rest.service.MutantService;
 import java.util.HashSet;
 import java.util.Set;
 
-	@ApplicationPath("/")
+	@ApplicationPath("mutant")
 	public class ApplicationConfig extends Application {
 	    @Override
 	    public Set<Class<?>> getClasses() {

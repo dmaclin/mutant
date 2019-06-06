@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
-  <application>mutant-242218</application><!-- unused for Cloud SDK based tooling -->
-  <version>1</version><!-- unused for Cloud SDK based tooling -->
-  <threadsafe>true</threadsafe>
-  <runtime>java8</runtime>
+    <application>mutantrest-242718</application>
+    <version>1</version>
+    <runtime>java8</runtime>
+    <threadsafe>true</threadsafe>
 </appengine-web-app>

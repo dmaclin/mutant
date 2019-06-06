@@ -4,7 +4,7 @@
 package com.mutant.ws.rest.model;
 
 public class ExpertoMutante {
-
+	ExpertoPersistencia expertoPersistencia;
 	private static final int TAMANIO_MUESTRA_ADN = 4;
 	
 	public boolean isMutant(String[] dna) throws ServicioException {
@@ -151,6 +151,7 @@ public class ExpertoMutante {
 	}
 
 	public void guardarADN(String[] dna, boolean isMutant) throws ServicioException {
-		ExpertoPersistencia.getInstancia().guardarADN(dna, isMutant);
+		expertoPersistencia = new ExpertoPersistencia();
+		expertoPersistencia.guardarADN(dna, isMutant);
 	}
 }
