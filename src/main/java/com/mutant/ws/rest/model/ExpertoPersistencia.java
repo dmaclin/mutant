@@ -30,53 +30,24 @@ public class ExpertoPersistencia {
 			"  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n" + 
 			"  \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-3enzw%40mutantrest-242718.iam.gserviceaccount.com\"\r\n" + 
 			"}";
-	//private static final String CLAVE = "./mutant-242218-firebase-adminsdk-ycbft-7a0a88236f.json";
 	final Semaphore semaphore = new Semaphore(0);
-	//private FileInputStream serviceAccount;
 	private static InputStream serviceAccount;
 	 
 	private static FirebaseOptions options;
 	
 	static {
-		try {
-			/*serviceAccount = new FileInputStream(this.getClass().getClassLoader().getResource(CLAVE).getFile());*/
 			serviceAccount = new ByteArrayInputStream(AUTH_DATABASE.getBytes());
-			options = new FirebaseOptions.Builder()
-			    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-			    .setDatabaseUrl(BASE_DE_DATOS)
-			    .build();
-			FirebaseApp.initializeApp(options);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	/*
-	public static synchronized ExpertoPersistencia getInstancia() {
-		if(instancia == null) {
-			instancia = new ExpertoPersistencia();
-		}
-		return instancia;
-	}
-	
-	
-	public SecuenciaADN buscarSecuencia(SecuenciaADN secuencia) {
-		String id = String.join("", secuencia.getDna());
-		FirebaseDatabase database = FirebaseDatabase.getInstance();
-		DatabaseReference secuenciaRef = database.getReference("SecuenciasADN");
-		CustomValueChangeListener listener = new CustomValueChangeListener();
-		secuenciaRef.child(id).addListenerForSingleValueEvent(listener);
-		while(true) {
-			if(this.flagCorte) {
-				flagCorte = false;
-				break;
+			try {
+				options = new FirebaseOptions.Builder()
+				    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+				    .setDatabaseUrl(BASE_DE_DATOS)
+				    .build();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		}
-		return listener.getAdn();
-	}*/
+			FirebaseApp.initializeApp(options);
+	}
 
 	public void guardarADN(String[] dna, boolean isMutante) throws ServicioException {
 		try {
@@ -85,9 +56,7 @@ public class ExpertoPersistencia {
 			secuencia.setMutante(isMutante);
 			FirebaseDatabase database = FirebaseDatabase.getInstance();
 			DatabaseReference ref = database.getReference("");
-			//DatabaseReference secuenciasADNRef = ref.child("SecuenciasADN/"+String.join("", dna));
 			DatabaseReference secuenciasADNRef = ref.child("SecuenciasADN");
-			//secuenciasADNRef.setValueAsync(secuencia);
 			secuenciasADNRef.push().setValueAsync(secuencia);
 		}catch(Exception e) {
 			throw new ServicioException("Error al intentar persistir los datos");
@@ -105,15 +74,5 @@ public class ExpertoPersistencia {
 			throw new ServicioException("Error Firebase al intentar obtener estadisticas");
 		}
 		return listener.getEstadistica();
-	}
-
-	@Override
-	public ExpertoPersistencia clone(){
-	    try {
-	        throw new CloneNotSupportedException();
-	    } catch (CloneNotSupportedException ex) {
-	        System.out.println("No se puede clonar un objeto de la clase ExpertoPersistencia");
-	    }
-	    return null; 
 	}
 }
