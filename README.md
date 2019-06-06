@@ -1,3 +1,3 @@
 # mutant
 Ejercicio para mercado libre <br>
-Cobertura https://coveralls.io/repos/github/dmaclin/mutant/badge.svg
+Cobertura [![Coverage Status](https://coveralls.io/repos/github/dmaclin/mutant/badge.svg)](https://coveralls.io/github/dmaclin/mutant)
