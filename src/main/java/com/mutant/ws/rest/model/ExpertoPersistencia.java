@@ -1,14 +1,11 @@
 package com.mutant.ws.rest.model;
 
 import java.io.ByteArrayInputStream;
-//import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.concurrent.Semaphore;
 
-import com.google.api.services.storage.model.ServiceAccount;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -17,12 +14,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class ExpertoPersistencia {
 	//private static ExpertoPersistencia instancia;
-	private static final String BASE_DE_DATOS = "https://mutantrest-242718.firebaseio.com/";
+	private static final String BASE_DE_DATOS = "https://mutantrest-242718.firebaseio.com";
 	private static final String AUTH_DATABASE = "{\r\n" + 
 			"  \"type\": \"service_account\",\r\n" + 
 			"  \"project_id\": \"mutantrest-242718\",\r\n" + 
-			"  \"private_key_id\": \"755c7e8fb19639536d43155c5c1192a3f999a2b6\",\r\n" + 
-			"  \"private_key\": \"-----BEGIN PRIVATE KEY-----\\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDRGtrsw93LskIF\\nvAVe+pt/vgskCxqEYLzCsNfYtREwDCXKR8Few7pBRIKoz4FUmJNbWiwufR1IARGr\\nKMRbkUR8MReIi7pq7YZBc6UtiaIpcmyXZpy0qAR/OAHjr+TM59Yhq6lTMTC0Jy0V\\nRgW0prPSn249YxCvLckv4JOnBuHNERgRNNVNBAWlmdxNwQdPH6pbvzbIpaWvz+mx\\nsGv+nly4tAgaRMJyhTXmQFGDh/QNxbYpH5L0+JZXCiYCEWP5NVmUdThT+qg2Kj8N\\nc3simVjF9BgR5vbtoy140NlF3GPcTGj3/E5HmWiU5wVEsOx9T02pDNdT8+XoRYJ5\\nxK87QqOZAgMBAAECggEAB0QrAyL/yjgqr+sTlzQ3ctoSZkld/adka9IMIB9TpnMn\\nnYa+jxnXVzUHotDaJkvKhBhHNILbwYCrAeL/5swuoG+uyQuM+fIA0jWv8dwIZu8P\\nW7gAvkzf4iFavHQka+PrBp7B2q6ZCguZ9xUotdk8orcwVCEFB4dcaEXiL6HPNype\\nsBDi2DiMif4GpYr3TRj0Q3K9O9GVkCyw9SgvieqWiohQDryyzGSIprONA6lrn0qD\\nrBsflTshtPOnC9kEsIYoM08iONsgfidvJ41UINkiRcSJ3jLKV93/PsgRIVRZLoea\\nrmjbwny+UZMu9NZF8CGr6igo5TqHhHqGaexT9aYXUQKBgQDvqdu33MLF+iBbgh9/\\n5FWjho+uL4EpWbAMA0ZHIysnhYqn7GAidTPXaSGlrz4y4asl2VzGbhbOzMeAqsj1\\n2Kp9BAw3xfJvuUqC+SZGvf7BOH32+dl4QUMa3E0ughf0r3DlZbtIUQT9NvGroUMX\\n0jQdraHaRe043vf71OnxynhOaQKBgQDfW79cr21h80TvjcdYK25xLwd3j8NACpzL\\ngIHP+eKG1pSI2iH/NGdTh8pE5NVyzHSbvFunzJghNLQ1WjLF4vV8RktZua2ild2F\\npXBh/2CPje6sgxdspFPrdhrwWBvjWcoUqcHeUFbBk/FwvINIwbA1v5RLGBEvy+h3\\noQT2k11lsQKBgQCxn7ZUYq2IhYUNzTcDVnuSItzCQDr+JpavkI25k3scY4EMS8hE\\nQZEWibiCT4tNsqth9eMovdbxlhwWZH1kmBxjY2iavX6dBzsOLxILRC1Xj0LslOh0\\nlAnkEnqxiYGvu4d0vR08z69e7CXZCj/rm8M8a7+VQlY63CX24yowJdtcYQKBgQDG\\nCTfbOuNV1HaLm35iy2dJzTPmqz2nu4EX4eG2/8z8Vqcty5IXD2SJqD0L5oTmGydM\\nqa3uUjWUQ4GASG/6Cmgz/rNyY3HzVMMrausAyIfZ4DL9G+IZ/n01qOrrrINVidfl\\niDoPHdY+HikVFt+kE69jiHA4QKeEZFvCLa8T3McTkQKBgDCAneAnkGlpkvB1Cn5Q\\nEQDapqTlVwAqsBGsL6JM/vzdK8/ynnTX6YY+ocYMj8UUbDYrbAl6djzbuJA6VcnR\\nPpY/rP3b3soYgIbP/a98aqJovrhUshB6j/qWy0j7QBmgY9Pl80/BUgWi3WuiNdnb\\n7HEIzNaGgzG4XqFBUNfsM9H8\\n-----END PRIVATE KEY-----\\n\",\r\n" + 
+			"  \"private_key_id\": \"d263beaee5cc21cb6c9da672749fa1539f674ce6\",\r\n" + 
+			"  \"private_key\": \"-----BEGIN PRIVATE KEY-----\\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDuiLS82eEyNjgW\\nMC8jKvlxZJW8Pf+cv1Z2IgPJ0aWfhIXi3ZmexsmTOfQizBcK2KjcysMZB8JTlixV\\nZUhzp8hDVRv7jG0F+UhEz6Ts08zEUmnrAFt7iYgcD2TTnmgmZJ1ntUUHC2bZRX/6\\nMogA3n/Qx3Wzb4entdaofRrUKKQzJjb4rPNcP9twEN8zN9Hf3epvOgFrs4GqKmNX\\n7mFJ65s6PvDGqzsuFwYgUKxsVN6BRmkldxrdt0FKTw12DEEXOzywGAzCEqV28Ir+\\nPmC+VC4hOeUi0Jq6PAKbrcIWcrtpf48YbMYKrRzqLagNz6SupeuXueg40BIGGUyX\\n+ohbGUs7AgMBAAECggEABYUDTaVrCRrpFFZcGN+7Mu0Fa/wxSILC8Ovbk5V21Cig\\nYn4HOn3WF0KNjCqV0+nsimNkvVUJIZ8Feppj4U0+HJTBF4KJ2UwJ6JG3esVx5Q8V\\nJVt2QncNv7x5dE4jkdPdMpOmu8F/SULK8dKug/qiEYY0ColnpbFW/MIcV1Fzbz2F\\nMf9OYvonuocVsgH28nYc15b++lgYSQZciXRYOO6Re+G176afBbWRGKTjXP3LIW0f\\nv+Hcnw6qXxN74lOo15trWT97kaHawBKv1d6MQFb35UoFVRA5PfGY8a2lRF/JCs4K\\nHjDp/83vIWILAK8DGyNLp3mQmHiis+RBThebSDodUQKBgQD+67NGtcXqzzO+mtYe\\nAtScgmSzK98rU8yB9xd4fCKxDW8cE0I9Wy19w+ZR6LkwB6yDKJivNFGJfnVpFKxF\\n2QivB/kMxESzHvkHrYPWzYWLT58eYmn2OZBvpPprjBzrwO2R44w9IqluVTLWMcgo\\nDS2xmgR3kWWORkwAxC1f8pjYCwKBgQDviz6nHbu9s4x7pwqFHZiSmLV5PQgj19Gs\\nZzCaF4FwIlASl8zQMICQ2azHaq6m7QYpARH9x7wTgOxNZBGKbtrdOOdodxtzPfsS\\ny03jrpi+926ctCceWuJJkby3WXS3rBn6d3eWX8vRImm/QI2OqwYlb116cFhWloj6\\nvXLzQt/nkQKBgQC81ZaYw6AXv2NiR0pjMs+SHFlCDDal3s54W7RMMRB1vTDYSD/i\\nOX9qUUp01IMR3C1jfxgTeRsJUd7hd0nh99Kh7bMETQNi+Ieas2MdJGNPfiytklNR\\n7PRcb4Z9Um4+CU0yq6+/vcRqkbw1xOyzFogJrsCuXcsv6Ez2qFvAXnHwXwKBgFGS\\nHDKySFUwCB2vY0CzNFpvUBTJ+LSj8I2B0iYW7QfvV08NjDw02AL7bP+3T2QegKOD\\n7sl5s4z8sPsloWd/ml4M25hSPvG+YHok6xAmS3N0NKF+I3gNwNMGornY54sIOwx0\\nlC+LzY8Y5eOvqsSzbnNe+fkQurQ5rMmdq8A0vKRRAoGBAJnOInP0Wy2C5PZ1lbnx\\nRZLg3EGOW2FRCCiONXjLAGH8DdQ5qRKKZzAULyJhVMvAx1EQfcQ3+f+hMHWfzgaq\\nU7d3EwP1KGsuR/ZfBmZfLtePdkKwtfxcYJUsPy4dgMtAl1QqFIK1wfgHwXD4pnU8\\n5H+4jOFWEDgpkW0PCy9fvfb6\\n-----END PRIVATE KEY-----\\n\",\r\n" + 
 			"  \"client_email\": \"firebase-adminsdk-3enzw@mutantrest-242718.iam.gserviceaccount.com\",\r\n" + 
 			"  \"client_id\": \"110699880658628203219\",\r\n" + 
 			"  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\r\n" + 
@@ -59,6 +56,7 @@ public class ExpertoPersistencia {
 			DatabaseReference secuenciasADNRef = ref.child("SecuenciasADN");
 			secuenciasADNRef.push().setValueAsync(secuencia);
 		}catch(Exception e) {
+			e.printStackTrace();
 			throw new ServicioException("Error al intentar persistir los datos");
 		}
 	}
@@ -71,6 +69,7 @@ public class ExpertoPersistencia {
 			secuenciaRef.addListenerForSingleValueEvent(listener);
 			semaphore.acquire();
 		}catch(Exception ex) {
+			ex.printStackTrace();
 			throw new ServicioException("Error Firebase al intentar obtener estadisticas");
 		}
 		return listener.getEstadistica();

@@ -1,6 +1,12 @@
 package com.mutant.ws.rest.model;
 
-public class Estadistica {
+import java.io.Serializable;
+
+public class Estadistica implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int count_mutant_dna;
 	private int count_human_dna;
 	private double ratio;
