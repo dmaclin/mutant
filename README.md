@@ -1,4 +1,4 @@
 # Mutant Rest
 Ejercicio mercado libre <br>
-Cobertura <a href='https://coveralls.io/github/dmaclin/mutant'><img src='https://coveralls.io/repos/github/dmaclin/mutant/badge.svg' alt='Coverage Status' /></a>
+Cobertura [![Coverage Status](https://coveralls.io/repos/github/dmaclin/mutant/badge.png)](https://coveralls.io/github/dmaclin/mutant)
 <br>
