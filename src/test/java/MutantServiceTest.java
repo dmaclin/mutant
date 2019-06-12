@@ -72,7 +72,7 @@ public class MutantServiceTest {
 	public void testMutant() {
 		MutantService nuevoServicio = new MutantService();
 		SecuenciaADN dna = new SecuenciaADN();
-		dna.setDna(ListaSecuenciaAleatoria(100));
+		dna.setDna(ListaSecuenciaAleatoria(50));
 		Response respuesta = nuevoServicio.isMutant(dna);
 		assertEquals(200, respuesta.getStatus());
 	}

@@ -11,8 +11,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
 		<maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
 		<archiveClasses>true</archiveClasses>
 	</properties>
@@ -49,12 +49,12 @@
 		<dependency>
 			<groupId>com.google.firebase</groupId>
 			<artifactId>firebase-admin</artifactId>
-			<version>6.8.0</version>
+			<version>6.8.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-1.0-sdk</artifactId>
-			<version>1.9.64</version>
+			<version>1.9.75</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-nop -->
 		<dependency>
@@ -78,13 +78,13 @@
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-stubs</artifactId>
-			<version>1.9.64</version>
+			<version>1.9.75</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-tools-sdk</artifactId>
-			<version>1.9.64</version>
+			<version>1.9.75</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

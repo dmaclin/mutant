@@ -15,7 +15,7 @@ public class CustomValueChangeListener implements ValueEventListener{
 	
 	public void onDataChange(DataSnapshot snapshot) {
 		
-		if(snapshot.getChildrenCount() > 0) {
+		/*if(snapshot.getChildrenCount() > 0) {
 			estadistica = new Estadistica();
 			snapshot.getChildren().forEach((DataSnapshot sec)->{ 
 				SecuenciaADN adn = (SecuenciaADN) sec.getValue(SecuenciaADN.class);
@@ -28,7 +28,7 @@ public class CustomValueChangeListener implements ValueEventListener{
 			estadistica.calcularProporcion();
 		}
 		//ExpertoPersistencia.getInstancia().setFlagCorte(true);
-		semaforo.release();
+		semaforo.release();*/
 	}
 	
 	public void onCancelled(DatabaseError error) {
