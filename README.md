@@ -19,7 +19,7 @@ https://mutantrest-242718.appspot.com/mutant/services/mutant <br>
         "TGAG"]
     }
 ### Response
-- HTTP Status 200, 403 o 503
+- HTTP Status 200, 403 o 503 <br>
   Al código de estado se anexa, como respuesta del servicio, un json con la siguiente estructura y atributos <br>
   <b>excepcion:</b> String en donde se escribe un mensaje en caso de haber ocurrido una excepción en el servicio.<br>
   <b>huboExcepcion:</b>Atributo booleano que informa que ocurrió una excepción. Es el primer atributo que debería validar un                                       cliente del servicio, y en caso que sea true, levantar el atributo excepción. (status 503) <br>
@@ -33,7 +33,7 @@ https://mutantrest-242718.appspot.com/mutant/services/stats <br>
 -   Content-Type: Application/JSON
 
  ### Response
-  - HTTP Status 200, 403 o 503
+  - HTTP Status 200, 403 o 503 <br>
   La respuesta del servicio es un json con la siguiente estructura y atributos <br>
   <b>excepcion:</b> String en donde se escribe un mensaje en caso de haber ocurrido una excepción en el servicio.<br>
   <b>huboExcepcion:</b>Atributo booleano que informa que ocurrió una excepción. Es el primer atributo que debería validar un                                       cliente del servicio, y en caso que sea true, levantar el atributo excepción. (status 503)<br>
