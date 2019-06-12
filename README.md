@@ -3,7 +3,7 @@ Ejercicio mercado libre <br>
 Cobertura [![Coverage Status](https://coveralls.io/repos/github/dmaclin/mutant/badge.png)](https://coveralls.io/github/dmaclin/mutant)
 <br>
 # Servicios<br>
-## Post --> /mutant <br>
+## /mutant <br>
 ### EndPoint<br>
 https://mutantrest-242718.appspot.com/mutant/services/mutant <br>
 ### Request
@@ -25,11 +25,11 @@ https://mutantrest-242718.appspot.com/mutant/services/mutant <br>
   <b>huboExcepcion:</b>Atributo booleano que informa que ocurrió una excepción. Es el primer atributo que debería validar un                                       cliente del servicio, y en caso que sea true, levantar el atributo excepción. (status 503) <br>
   <b>resultado:</b> Atributo donde se presenta el resultado del endpoint. En este caso es true (status 200) en caso que la secuencia de ADN sea mutante y false (status 403> en caso contrario.<br>
   
-## Get --> /stats <br>
+## /stats <br>
  ### EndPoint <br>
 https://mutantrest-242718.appspot.com/mutant/services/stats <br>
  ### Request
--   HTTP Method: POST
+-   HTTP Method: GET
 -   Content-Type: Application/JSON
 
  ### Response
