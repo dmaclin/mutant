@@ -4,7 +4,7 @@ Cobertura [![Coverage Status](https://coveralls.io/repos/github/dmaclin/mutant/b
 <br>
 # Servicios<br>
 ## Post --> /mutant <br>
-- <b>EndPoint</b><br>
+### EndPoint<br>
 https://mutantrest-242718.appspot.com/mutant/services/mutant <br>
 ### Request
 -   HTTP Method: POST
@@ -26,7 +26,7 @@ https://mutantrest-242718.appspot.com/mutant/services/mutant <br>
   <b>resultado:</b> Atributo donde se presenta el resultado del endpoint. En este caso es true (status 200) en caso que la secuencia de ADN sea mutante y false (status 403> en caso contrario.<br>
   
 ## Get --> /stats <br>
-- <b>EndPoint</b><br>
+ ### EndPoint <br>
 https://mutantrest-242718.appspot.com/mutant/services/stats <br>
  ### Request
 -   HTTP Method: POST
