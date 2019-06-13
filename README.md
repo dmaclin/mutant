@@ -1,5 +1,22 @@
 # Mutant Rest
 Ejercicio mercado libre <br>
+# Tecnologias Utilizadas
+
+- Aplicacion
+    - JUnit Jupiter 5.4.2
+    - JDK 1.8
+    - JAX-RS + Jersey + genson
+    - Apache Maven 3.6.0
+- Test de API y Perfomance
+    - Apache JMETER
+    - Reslet
+- IDE
+    - Eclipse 2019-03 (4.11.0)
+- Servidores de Aplicaciones
+    - Tomcat 9.0
+    - Google App Engine (Cloud Java Server)  
+- Servidores de BD
+    - Google Firebase (Cloud Firestore)
 # Cobertura Testing
 [![Coverage Status](https://coveralls.io/repos/github/dmaclin/mutant/badge.png)](https://coveralls.io/github/dmaclin/mutant)
 <br>
