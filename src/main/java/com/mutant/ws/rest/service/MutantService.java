@@ -11,6 +11,7 @@ import javax.ws.rs.core.Response;
 import com.mutant.ws.rest.model.Estadistica;
 import com.mutant.ws.rest.model.ExpertoEstadisticas;
 import com.mutant.ws.rest.model.ExpertoMutante;
+import com.mutant.ws.rest.model.MapaADNEvaluados;
 import com.mutant.ws.rest.model.RespuestaServicio;
 import com.mutant.ws.rest.model.SecuenciaADN;
 import com.mutant.ws.rest.model.ServicioException;
@@ -31,15 +32,28 @@ public class MutantService {
 		dna = secuencia.getDna().toArray(dna);
 		try {
 			if(dna != null && Validador.validarMatriz(dna)) {
+				Boolean resultado = MapaADNEvaluados.buscar(String.join("", dna));
+				if(resultado != null) {
+					respuesta.setResultado(resultado);
+					respuesta.setHuboExcepcion(false);
+					respuesta.setExcepcion("");
+					if(resultado) {
+						return Response.status(200).entity(respuesta).build();
+					}else {
+						return Response.status(403).entity(respuesta).build();
+					}
+				}
 				expertoMutante = new ExpertoMutante();
 				if(expertoMutante.isMutant(dna)) {
 					respuesta.setResultado(true);
 					respuesta.setHuboExcepcion(false);
 					respuesta.setExcepcion("");
+					MapaADNEvaluados.guardar(String.join("", dna), true);
 					expertoMutante.guardarADN(dna, true);
 					return Response.status(200).entity(respuesta).build();
 				}
 			}
+			MapaADNEvaluados.guardar(String.join("", dna), false);
 			expertoMutante.guardarADN(dna, false);
 			respuesta.setResultado(false);
 			respuesta.setHuboExcepcion(false);
