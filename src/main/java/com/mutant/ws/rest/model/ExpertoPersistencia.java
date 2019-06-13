@@ -1,6 +1,8 @@
 package com.mutant.ws.rest.model;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +23,7 @@ import com.google.firebase.cloud.FirestoreClient;
 public class ExpertoPersistencia {
 
 	//private static final String BASE_DE_DATOS = "https://mutantrest-242718.firebaseio.com";
-	/*private static final String AUTH_DATABASE = "{\r\n" + 
+	private static final String AUTH_DATABASE = "{\r\n" + 
 			"  \"type\": \"service_account\",\r\n" + 
 			"  \"project_id\": \"mutantrest-242718\",\r\n" + 
 			"  \"private_key_id\": \"a004d86ac01c680386d5e34329d626ecc9382ad6\",\r\n" + 
@@ -32,13 +34,13 @@ public class ExpertoPersistencia {
 			"  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n" + 
 			"  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n" + 
 			"  \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-yjcqu%40mutantrest-242718.iam.gserviceaccount.com\"\r\n" + 
-			"}";*/
-	//private static InputStream serviceAccount;
+			"}";
+	private static InputStream serviceAccount;
 	private static FirebaseOptions options;
 	private static Firestore db;
 	
 	static {
-		/*serviceAccount = new ByteArrayInputStream(AUTH_DATABASE.getBytes());
+		serviceAccount = new ByteArrayInputStream(AUTH_DATABASE.getBytes());
 		try {
 			options = new FirebaseOptions.Builder().setCredentials(GoogleCredentials.fromStream(serviceAccount))
 					.build();
@@ -47,8 +49,8 @@ public class ExpertoPersistencia {
 			e.printStackTrace();
 		}
 		FirebaseApp.initializeApp(options);
-		db = FirestoreClient.getFirestore();*/
-		GoogleCredentials credentials;
+		db = FirestoreClient.getFirestore();
+		/*GoogleCredentials credentials;
 		try {
 			credentials = GoogleCredentials.getApplicationDefault();
 			options = new FirebaseOptions.Builder()
@@ -62,7 +64,7 @@ public class ExpertoPersistencia {
 			System.out.println("ERRORRRRRRRRRRRR" + e.getMessage());
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 	}
 
@@ -109,5 +111,25 @@ public class ExpertoPersistencia {
 			e.printStackTrace();
 		}
 		return estadistica;
+	}
+
+	public void cargarDatosDB() {
+		ApiFuture<QuerySnapshot> query = db.collection("secuenciasADN").get();
+		QuerySnapshot querySnapshot = null;
+		try {
+			querySnapshot = query.get();
+			List<QueryDocumentSnapshot> documents = querySnapshot.getDocuments();
+
+			for (QueryDocumentSnapshot document : documents) {
+				MapaADNEvaluados.guardar(String.join("", document.getString("dna")), document.getBoolean("mutante"));
+			}
+
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 	}
 }

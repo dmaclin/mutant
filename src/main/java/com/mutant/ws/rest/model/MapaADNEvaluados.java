@@ -7,6 +7,11 @@ public final class MapaADNEvaluados {
 	
 	private static Map<String, Boolean> mapa = new HashMap<String, Boolean>();
 	
+	static {
+		ExpertoPersistencia experto = new ExpertoPersistencia();
+		experto.cargarDatosDB();
+	}
+	
 	private MapaADNEvaluados() {
 		
 	}

@@ -16,6 +16,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 
 import com.mutant.ws.rest.model.ExpertoEstadisticas;
 import com.mutant.ws.rest.model.ExpertoPersistencia;
+import com.mutant.ws.rest.model.MapaADNEvaluados;
 import com.mutant.ws.rest.model.SecuenciaADN;
 import com.mutant.ws.rest.model.ServicioException;
 import com.mutant.ws.rest.model.Validador;
@@ -210,4 +211,11 @@ public class MutantServiceTest {
 
 		return cadena;
 	}
+	
+	@Test
+	@Order(13)
+	public void cargaMapaADN() {
+		assertEquals(MapaADNEvaluados.buscar("TAGTTGGCTTATCGAG"), false);
+	}
+	
 }
