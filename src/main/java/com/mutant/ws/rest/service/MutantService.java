@@ -28,37 +28,44 @@ public class MutantService {
     @Produces(MediaType.APPLICATION_JSON)
 	public Response isMutant(SecuenciaADN secuencia) {
 		RespuestaServicio<Boolean> respuesta = new RespuestaServicio<Boolean>();
-		String[] dna = new String[secuencia.getDna().size()];
-		dna = secuencia.getDna().toArray(dna);
 		try {
-			if(dna != null && Validador.validarMatriz(dna)) {
-				Boolean resultado = MapaADNEvaluados.buscar(String.join("", dna));
-				if(resultado != null) {
-					respuesta.setResultado(resultado);
-					respuesta.setHuboExcepcion(false);
-					respuesta.setExcepcion("");
-					if(resultado) {
-						return Response.status(200).entity(respuesta).build();
-					}else {
-						return Response.status(403).entity(respuesta).build();
+			if(secuencia != null) {
+				String[] dna = new String[secuencia.getDna().size()];
+				dna = secuencia.getDna().toArray(dna);
+					if(dna != null && Validador.validarMatriz(dna)) {
+						Boolean resultado = MapaADNEvaluados.buscar(String.join("", dna));
+						if(resultado != null) {
+							respuesta.setResultado(resultado);
+							respuesta.setHuboExcepcion(false);
+							respuesta.setExcepcion("");
+							if(resultado) {
+								return Response.status(200).entity(respuesta).build();
+							}else {
+								return Response.status(403).entity(respuesta).build();
+							}
+						}
+						expertoMutante = new ExpertoMutante();
+						if(expertoMutante.isMutant(dna)) {
+							respuesta.setResultado(true);
+							respuesta.setHuboExcepcion(false);
+							respuesta.setExcepcion("");
+							MapaADNEvaluados.guardar(String.join("", dna), true);
+							expertoMutante.guardarADN(dna, true);
+							return Response.status(200).entity(respuesta).build();
+						}
 					}
-				}
-				expertoMutante = new ExpertoMutante();
-				if(expertoMutante.isMutant(dna)) {
-					respuesta.setResultado(true);
+					MapaADNEvaluados.guardar(String.join("", dna), false);
+					expertoMutante.guardarADN(dna, false);
+					respuesta.setResultado(false);
 					respuesta.setHuboExcepcion(false);
 					respuesta.setExcepcion("");
-					MapaADNEvaluados.guardar(String.join("", dna), true);
-					expertoMutante.guardarADN(dna, true);
-					return Response.status(200).entity(respuesta).build();
-				}
+					return Response.status(403).entity(respuesta).build();
+			}else {
+				respuesta.setResultado(false);
+				respuesta.setHuboExcepcion(true);
+				respuesta.setExcepcion("Debe ingresar nua cadena de DNA");
+				return Response.status(503).entity(respuesta).build();
 			}
-			MapaADNEvaluados.guardar(String.join("", dna), false);
-			expertoMutante.guardarADN(dna, false);
-			respuesta.setResultado(false);
-			respuesta.setHuboExcepcion(false);
-			respuesta.setExcepcion("");
-			return Response.status(403).entity(respuesta).build();
 		}catch(ServicioException ex) {
 			respuesta.setResultado(false);
 			respuesta.setHuboExcepcion(true);
